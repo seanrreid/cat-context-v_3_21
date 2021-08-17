@@ -6,10 +6,10 @@ const Cat = () => {
     const [value, dispatch] = useContext(StateContext);
     const { petName } = value;
 
-    const _handleClick = (type) => {
+    const _handleClick = (type, activity) => {
         dispatch({
             type,
-            payload: name,
+            payload: { name, activity },
         });
     };
 
@@ -22,10 +22,10 @@ const Cat = () => {
         <>
             <input type='text' onChange={(e) => _handleChange(e)} />
             <p>Name: {petName}</p>
-            <button type='button' onClick={() => _handleClick('ACTION_EAT')}>
+            <button type='button' onClick={() => _handleClick('ACTION_EAT', 'eating')}>
                 eat
             </button>
-            <button type='button' onClick={() => _handleClick('ACTION_NAP')}>
+            <button type='button' onClick={() => _handleClick('ACTION_NAP', 'sleeping')}>
                 nap
             </button>
         </>

@@ -13,13 +13,13 @@ function App() {
         switch (action.type) {
             case 'ACTION_EAT':
                 return {
-                    activity: [...state.activity, 'eating'],
-                    petName: action.payload,
+                    activity: [...state.activity, action.payload.activity],
+                    petName: action.payload.name,
                 };
             case 'ACTION_NAP':
                 return {
-                    activity: [...state.activity, 'napping'],
-                    petName: action.payload,
+                    activity: [...state.activity, action.payload.activity],
+                    petName: action.payload.name,
                 };
             default:
                 return state;
