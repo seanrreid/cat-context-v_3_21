@@ -1,19 +1,27 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import StateContext from '../context';
 
 const Cat = () => {
+    const [name, setName] = useState('');
     const [value, dispatch] = useContext(StateContext);
-    const { activity } = value;
+    const { petName } = value;
 
     const _handleClick = (type) => {
         dispatch({
             type,
+            payload: name,
         });
+    };
+
+    const _handleChange = (e) => {
+        e.preventDefault();
+        setName(e.target.value);
     };
 
     return (
         <>
-            <p>The cat is {activity}</p>
+            <input type='text' onChange={(e) => _handleChange(e)} />
+            <p>Name: {petName}</p>
             <button type='button' onClick={() => _handleClick('ACTION_EAT')}>
                 eat
             </button>

@@ -1,21 +1,25 @@
 import { useReducer } from 'react';
 import { StateProvider } from './context';
-import Cat from "./components/Cat"
+import Cat from './components/Cat';
+import CatDoing from './components/CatDoing';
 
 function App() {
     const initialState = {
-        activity: 'purring',
+        activity: ['purring'],
+        petName: 'Kitty',
     };
 
     const contextReducer = (state, action) => {
         switch (action.type) {
             case 'ACTION_EAT':
                 return {
-                    activity: 'eating',
+                    activity: [...state.activity, 'eating'],
+                    petName: action.payload,
                 };
             case 'ACTION_NAP':
                 return {
-                    activity: 'napping',
+                    activity: [...state.activity, 'napping'],
+                    petName: action.payload,
                 };
             default:
                 return state;
@@ -27,6 +31,7 @@ function App() {
             <StateProvider value={useReducer(contextReducer, initialState)}>
                 <h1>Context Demo</h1>
                 <Cat />
+                <CatDoing />
             </StateProvider>
         </div>
     );
